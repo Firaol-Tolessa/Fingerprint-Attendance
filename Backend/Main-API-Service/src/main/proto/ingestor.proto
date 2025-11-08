@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service IngestService {
+    rpc IngestEvent (ScanEvent) returns (IngestResponse);
+}
+
+message ScanEvent{
+    string employeeId = 1;
+    string deviceId = 2;
+    string timestamp = 3;
+    string eventHash = 4;
+}
+
+message IngestResponse{
+    string success = 1;
+    string message = 2;
+}

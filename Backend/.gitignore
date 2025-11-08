@@ -1,0 +1,22 @@
+*.class
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+target/
+.mvn/
+
+
+# Log files
+npm-debug.log*
+# Dependencies
+node_modules/
+
+# === IDE ===
+.idea/
+.vscode/
