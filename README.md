@@ -1,24 +1,26 @@
-# Node.js Traffic-Event Aggregator with GraphQL
+# Fingerprint Attendance System
 
-This project is a high-performance backend system designed to ingest and aggregate traffic event data from road cameras. I
+This project is a high-performance event ingestion system that uses gRPC for internal communication and a Spring Boot REST API to serve a public frontend. It's designed to handle raw event data from fingerprint scanners, process it idempo-tently, and display it on a dashboard.
+
 ---
 
 ##  architecture
 
 The system is composed of two main backend services and a frontend:
 
-1.  **Ingestor Service  :**
-     A lightweight Node.js service.
-    * **Role:**  Listens for incoming JSON payloads from cameras..
-    * **Action:** Transforms JSON into a GraphQL mutation and forwards it to the Main API.
- 
-2.  **GraphQL API:**
-     A Node.js (Express) server that runs the main business logic.
-    * **Role:**  Serves the React frontend and handles all data queries/mutations.
-    * **Action:** Connects to a PostgreSQL database (via TypeORM) for persistent storage.
-3.  **React Dashboard (The "Frontend"):**
-    * A React app (e.g., on port 3000) that consumes the GraphQL API..
+1.  **Main API Service (The "Kitchen"):**
+    * A Spring Boot application that runs the main business logic.
+    * **REST API:** Serves the React frontend on port `8080`.
+    * **gRPC Server:** Listens for internal ingestion requests (multiplexed on port `8080`).
+    * **Database:** Connects to a PostgreSQL database for persistent storage.
 
+2.  **Ingestion Worker (The "Gateway"):**
+    * A lightweight Spring Boot gateway.
+    * **REST API:** Listens for `POST` requests from devices (e.g., on port `8090`).
+    * **gRPC Client:** Forwards device data to the `Main-API-Service` using gRPC.
+
+3.  **React Dashboard (The "Frontend"):**
+    * A React app (e.g., on port `5173`) that consumes the `Main-API-Service`'s REST API.
 ### Data Flow
 
 <img width="550" height="550" alt="image" src="https://github.com/user-attachments/assets/ea774235-97c4-40e1-bac1-1199006a9ee3" />
