@@ -30,6 +30,9 @@ The system is composed of two main backend services and a frontend:
 * **Ingestion:** `[FingerPrint Device]` $\rightarrow$ `POST /api/scan` $\rightarrow$ `[Ingestion-Worker (:8090)]` $\rightarrow$ `gRPC` $\rightarrow$ `[Main-API-Service (:8080)]` $\rightarrow$ `[PostgreSQL DB]`
 * **Viewing:** `[Browser]` $\rightarrow$ `[React App (:5173)]` $\rightarrow$ `GET /api/attendance` $\rightarrow$ `[Main-API-Service (:8080)]` $\rightarrow$ `[PostgreSQL DB]`
 
+### Frontend Dashboard 
+<img width="518" height="349" alt="image" src="https://github.com/user-attachments/assets/daf6cd79-5efe-4f99-8e79-d53105cfc011" />
+
 ---
 
 ## 🛠️ Prerequisites
